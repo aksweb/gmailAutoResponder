@@ -1,4 +1,4 @@
-const addLabelToEmail = require('../addLabelToEmail');
+const addLabelToEmail = require('./addLabelToEmail');
 
 async function sendReplyToThreads(threads, userEmail, toDetails, replyContent, labelName, gmail) {
     try {
