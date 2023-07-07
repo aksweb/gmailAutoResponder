@@ -91,11 +91,13 @@ async function gmailAutoResponder(auth) {
     //gmail API authorization
     const gmail = google.gmail({ version: 'v1', auth });
 
-    // extracting users email
+    // extracting users email-id
     const reqEmail = await gmail.users.getProfile({
         userId: 'me',
     });
     const userEmail = reqEmail.data.emailAddress;
+
+    //checking users gmail inbox
     const res = await gmail.users.messages.list({
         userId: 'me',
         labelIds: ['INBOX']
@@ -104,12 +106,14 @@ async function gmailAutoResponder(auth) {
     // console.log(emails);
 
     // -----------------------------------------------------------------------------------------------------------------------
-    //TASK 1 : EXTRACTING UNREPLIED THREADS (EMAILS & FULL NAMES, WHICH WILL BE NEEDED DURING MESSAGE SENDING)
+    //TASK 1 : EXTRACTING UN-REPLIED THREADS (EMAILS & FULL NAMES, WHICH WILL BE NEEDED DURING MESSAGE SENDING)
     // -----------------------------------------------------------------------------------------------------------------------
+    const unRepliedThreads = await identifyThreads(emails, gmail);
 
-    const unRpTd = await identifyThreads(emails, gmail);
-    const senderIds = await extractSenderEmails(unRpTd, gmail);
+    //this will give a string array containing both name and email id
+    const senderIds = await extractSenderEmails(unRepliedThreads, gmail); //['Nikhil Chatterjee <belawanarwal@gmail.com>']
 
+    //seperating email and name [{'Nikhil Chatterjee',  '<belawanarwal@gmail.com>'}, {} ]
     const toDetails = senderIds.map((str) => {
         const nameStartIndex = str.indexOf('');
         const nameEndIndex = str.indexOf(' <');
@@ -125,15 +129,15 @@ async function gmailAutoResponder(auth) {
     // console.log("unreplied threads:", unRpTd);
 
     //user specific value
-    const replyContent = "Cool, we will find you soon";
-    let labelName = "myFans";
+    const replyContent = "Right now, I am giving the project demo";
+    let labelName = "openInApp";
 
 
     // -----------------------------------------------------------------------------------------------------------------------
     // TASK 2 & 3 SENDING REPLY & ADDING LABELS &  MOVING.
     // -----------------------------------------------------------------------------------------------------------------------
     if (toDetails.length != 0) {
-        await sendReplyToThreads(unRpTd, userEmail, toDetails, replyContent, labelName, gmail);
+        await sendReplyToThreads(unRepliedThreads, userEmail, toDetails, replyContent, labelName, gmail);
     }
 
     // -----------------------------------------------------------------------------------------------------------------------

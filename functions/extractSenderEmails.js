@@ -18,6 +18,7 @@ async function extractSenderEmails(threads, gmail) {
                 //finding logic:
                 const fromHeader = headers.find(header => header.name === 'From');
                 if (fromHeader) {
+                    // console.log(fromHeader.value); //this will give FROM email id
                     const senderEmail = fromHeader.value;
                     senderEmails.push(senderEmail);
                 }
