@@ -27,7 +27,7 @@ Before running the Node.js app, make sure you have the following:
 1. Clone the repository to your local machine.
 2. Install the dependencies by running `npm install` in the project directory.
 3. Place your `credentials.json` file (obtained from the Google Cloud Platform) in the project directory.
-4. Run the app using `npm start` or `node app.js`.
+4. Run the app using `node .` or `node index.js`.
 5. The app will prompt you to authorize the Gmail API access. Follow the instructions to grant permission.
 6. The app will start checking for new emails and automatically respond to unreplied threads.
 7. Customize the reply content, label name, and intervals as per your requirements.
@@ -50,6 +50,6 @@ The Node.js Gmail Autoresponder app provides a convenient way to automate email 
 
 **Note**: Remember to keep your `token.json` and `credentials.json` files secure and avoid committing them to a public Git repository. Properly configure your `.gitignore` file to exclude these sensitive files from version control.
 
-For detailed setup instructions and code implementation, refer to the project repository's README file.
+For detailed instructions and code implementation, refer to index.js and functions folder.
 
 ---

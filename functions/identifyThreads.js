@@ -32,7 +32,7 @@ async function identifyThreads(emails, gmail) {
             //if not
             else threads.push(threadId);
 
-            console.log(messages[0].labelIds);
+            // console.log(messages[0].labelIds);
             threadIds.push(threadId);
         }
         return threads;

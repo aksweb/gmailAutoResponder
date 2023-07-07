@@ -101,7 +101,7 @@ async function gmailAutoResponder(auth) {
         labelIds: ['INBOX']
     });
     const emails = res.data.messages;
-    console.log(emails);
+    // console.log(emails);
 
     // -----------------------------------------------------------------------------------------------------------------------
     //TASK 1 : EXTRACTING UNREPLIED THREADS (EMAILS & FULL NAMES, WHICH WILL BE NEEDED DURING MESSAGE SENDING)
@@ -121,7 +121,7 @@ async function gmailAutoResponder(auth) {
         return { name, email };
     });
 
-    // console.log(toDetails);
+    console.log(toDetails);
     // console.log("unreplied threads:", unRpTd);
 
     //user specific value
