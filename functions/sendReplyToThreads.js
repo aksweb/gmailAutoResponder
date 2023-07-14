@@ -19,7 +19,7 @@ async function sendReplyToThreads(threads, userEmail, toDetails, replyContent, l
             };
 
             await gmail.users.messages.send(replyMessage);
-
+            console.log("Sinding Reply..");
             console.log('Reply sent for thread:', threadId);
 
             await addLabelToEmail(threadId, labelName, gmail);

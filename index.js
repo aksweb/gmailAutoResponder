@@ -106,7 +106,7 @@ async function gmailAutoResponder(auth) {
     // console.log(emails);
 
     // -----------------------------------------------------------------------------------------------------------------------
-    //TASK 1 : EXTRACTING UN-REPLIED THREADS (EMAILS & FULL NAMES, WHICH WILL BE NEEDED DURING MESSAGE SENDING)
+    //STEP 1 : EXTRACTING UN-REPLIED THREADS (EMAILS & FULL NAMES, WHICH WILL BE NEEDED DURING MESSAGE SENDING)
     // -----------------------------------------------------------------------------------------------------------------------
     const unRepliedThreads = await identifyThreads(emails, gmail);
 
@@ -134,14 +134,14 @@ async function gmailAutoResponder(auth) {
 
 
     // -----------------------------------------------------------------------------------------------------------------------
-    // TASK 2 & 3 SENDING REPLY & ADDING LABELS &  MOVING.
+    // STEP 2 & 3 SENDING REPLY & ADDING LABELS &  MOVING.
     // -----------------------------------------------------------------------------------------------------------------------
     if (toDetails.length != 0) {
         await sendReplyToThreads(unRepliedThreads, userEmail, toDetails, replyContent, labelName, gmail);
     }
 
     // -----------------------------------------------------------------------------------------------------------------------
-    //TASK 4 : AUTOMATIC CALL IN RANDOM INTERVAL (b/w 45 to 120)
+    //STEP 4 : AUTOMATIC CALL IN RANDOM INTERVAL (b/w 45 to 120)
     // -----------------------------------------------------------------------------------------------------------------------
     const randomInterval = Math.floor(Math.random() * (120 - 45 + 1) + 45) * 1000; // Random interval in milliseconds
     setTimeout(async () => {

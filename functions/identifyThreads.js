@@ -35,6 +35,9 @@ async function identifyThreads(emails, gmail) {
             // console.log(messages[0].labelIds);
             threadIds.push(threadId);
         }
+        if (threads.length > 0) console.log("New Threads found", threads);
+        else console.log("No new threads.");
+        console.log("");
         return threads;
 
     } catch (error) {
